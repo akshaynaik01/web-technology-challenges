@@ -1,0 +1,72 @@
+<!--
+  Challenge 3: HTML Forms
+  
+  Task: Create an HTML form with various input types:
+  - Text inputs, email, password
+  - Radio buttons and checkboxes
+  - Select dropdown
+  - Textarea
+  - Form submission
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Forms Challenge</title>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    
+    <form action="#" method="POST">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        
+        <div>
+            <label for="country">Country:</label>
+            <select id="country" name="country">
+                <option value="">Select a country</option>
+                <option value="usa">USA</option>
+                <option value="uk">UK</option>
+                <option value="india">India</option>
+                <option value="canada">Canada</option>
+            </select>
+        </div>
+        
+        <div>
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+        </div>
+        
+        <div>
+            <input type="checkbox" id="subscribe" name="subscribe" value="yes">
+            <label for="subscribe">Subscribe to newsletter</label>
+        </div>
+        
+        <div>
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+        </div>
+        
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</body>
+</html>
