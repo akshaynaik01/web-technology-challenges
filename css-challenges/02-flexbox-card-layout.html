@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Card Layout Challenge</title>
+    <style>
+        /* CHALLENGE: Create a responsive card layout using Flexbox */
+        /* Instructions:
+           1. Style the .container to use flexbox
+           2. Make cards wrap to new lines when screen is small
+           3. Cards should be equal width and have some gap between them
+           4. Add hover effects to cards
+           5. Make the layout responsive (stack on mobile)
+        */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        /* TODO: Add your Flexbox styles here */
+        .container {
+            /* Your code here */
+        }
+        
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            /* Your code here for card sizing */
+        }
+        
+        .card:hover {
+            /* Add hover effect */
+        }
+        
+        .card h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* TODO: Add responsive breakpoint for mobile */
+        @media (max-width: 768px) {
+            /* Your responsive code here */
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexbox Card Layout Challenge</h1>
+    
+    <div class="container">
+        <div class="card">
+            <h3>Card 1</h3>
+            <p>This is a sample card layout using Flexbox. Style me using CSS!</p>
+        </div>
+        <div class="card">
+            <h3>Card 2</h3>
+            <p>Make these cards responsive and add nice hover effects.</p>
+        </div>
+        <div class="card">
+            <h3>Card 3</h3>
+            <p>Practice your Flexbox skills with this challenge!</p>
+        </div>
+        <div class="card">
+            <h3>Card 4</h3>
+            <p>Create a beautiful, modern card layout design.</p>
+        </div>
+    </div>
+</body>
+</html>
