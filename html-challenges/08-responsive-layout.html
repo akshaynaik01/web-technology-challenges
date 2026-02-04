@@ -1,0 +1,202 @@
+<!-- HTML Challenge 08: Responsive Layout
+
+CHALLENGE:
+Create a responsive webpage layout that adapts to different screen sizes.
+
+REQUIREMENTS:
+1. Use semantic HTML5 elements (header, nav, main, article, aside, footer)
+2. Create a multi-column layout that is responsive
+3. Use CSS media queries for responsive design
+4. Include proper accessibility attributes (alt text, ARIA labels)
+5. Mobile-first approach (design for mobile first, then enhance for larger screens)
+
+HINTS:
+- Use <header> for site header
+- Use <nav> for navigation
+- Use <main> for main content
+- Use <aside> for sidebar
+- Use <footer> for footer
+- Test with different screen sizes
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout Challenge</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Mobile-first design (0px and up) */
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      background-color: #34495e;
+      padding: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav a {
+      display: block;
+      color: white;
+      padding: 1rem;
+      text-decoration: none;
+      border-bottom: 1px solid #2c3e50;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #2c3e50;
+    }
+
+    main {
+      padding: 1rem;
+    }
+
+    article {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    article h2 {
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    aside {
+      background-color: #ecf0f1;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 4px;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* Tablet design (768px and up) */
+    @media (min-width: 768px) {
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        display: flex;
+        gap: 2rem;
+      }
+
+      article {
+        flex: 2;
+      }
+
+      aside {
+        flex: 1;
+        margin-top: 0;
+        height: fit-content;
+      }
+
+      nav ul {
+        flex-direction: row;
+      }
+
+      nav a {
+        border-bottom: none;
+        border-right: 1px solid #2c3e50;
+      }
+
+      nav a:last-child {
+        border-right: none;
+      }
+    }
+
+    /* Desktop design (1024px and up) */
+    @media (min-width: 1024px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Responsive Layout Challenge</h1>
+    <p>Test this layout on different screen sizes</p>
+  </header>
+
+  <nav role="navigation" aria-label="Main Navigation">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main role="main">
+    <section>
+      <article>
+        <h2>Main Article</h2>
+        <p>This is the main content area. On mobile, it takes full width. On tablets and desktops, it sits alongside the sidebar.</p>
+        <p>The layout uses flexbox for responsive design and media queries to adjust at different breakpoints.</p>
+      </article>
+
+      <article>
+        <h2>Secondary Article</h2>
+        <p>Another article in the main content area. This demonstrates how multiple content blocks flow in the layout.</p>
+      </article>
+    </section>
+
+    <aside role="complementary" aria-label="Sidebar">
+      <h3>Sidebar</h3>
+      <p>On mobile, this sidebar appears below the main content. On larger screens, it appears to the right as a fixed-width column.</p>
+      <ul>
+        <li>Responsive design tip 1</li>
+        <li>Responsive design tip 2</li>
+        <li>Responsive design tip 3</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Responsive Layout Challenge. All rights reserved.</p>
+  </footer>
+</body>
+</html>
