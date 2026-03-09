@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenge 12: Custom Video Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+    }
+    .video-container {
+      position: relative;
+      background: black;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+    video {
+      width: 100%;
+      display: block;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.7);
+    }
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #764ba2;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+    }
+    .progress {
+      height: 100%;
+      background: #667eea;
+      border-radius: 4px;
+      width: 0%;
+    }
+    .time {
+      font-size: 14px;
+      min-width: 100px;
+    }
+    ul {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px 40px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Challenge 12: Custom Video Player</h1>
+    
+    <h2>Task:</h2>
+    <p>Create a custom HTML5 video player with custom controls using JavaScript.</p>
+    
+    <h3>Requirements:</h3>
+    <ul>
+      <li>Use the HTML5 video element</li>
+      <li>Create custom play/pause button</li>
+      <li>Add a progress bar that updates as the video plays</li>
+      <li>Display current time and total duration</li>
+      <li>Add volume control</li>
+      <li>Implement fullscreen functionality</li>
+    </ul>
+    
+    <div class="video-container">
+      <video id="myVideo">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      
+      <div class="controls">
+        <button id="playPause">Play</button>
+        <div class="progress-bar" id="progressBar">
+          <div class="progress" id="progress"></div>
+        </div>
+        <span class="time" id="timeDisplay">0:00 / 0:00</span>
+        <button id="volumeBtn">Volume</button>
+        <button id="fullscreen">Fullscreen</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const video = document.getElementById('myVideo');
+    const playPauseBtn = document.getElementById('playPause');
+    const progressBar = document.getElementById('progressBar');
+    const progress = document.getElementById('progress');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const volumeBtn = document.getElementById('volumeBtn');
+    const fullscreenBtn = document.getElementById('fullscreen');
+    
+    playPauseBtn.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        playPauseBtn.textContent = 'Pause';
+      } else {
+        video.pause();
+        playPauseBtn.textContent = 'Play';
+      }
+    });
+    
+    video.addEventListener('timeupdate', () => {
+      const percentage = (video.currentTime / video.duration) * 100;
+      progress.style.width = percentage + '%';
+      
+      const currentMins = Math.floor(video.currentTime / 60);
+      const currentSecs = Math.floor(video.currentTime % 60);
+      const durationMins = Math.floor(video.duration / 60);
+      const durationSecs = Math.floor(video.duration % 60);
+      
+      timeDisplay.textContent = `${currentMins}:${currentSecs.toString().padStart(2, '0')} / ${durationMins}:${durationSecs.toString().padStart(2, '0')}`;
+    });
+    
+    progressBar.addEventListener('click', (e) => {
+      const rect = progressBar.getBoundingClientRect();
+      const pos = (e.clientX - rect.left) / rect.width;
+      video.currentTime = pos * video.duration;
+    });
+    
+    volumeBtn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      volumeBtn.textContent = video.muted ? 'Unmute' : 'Volume';
+    });
+    
+    fullscreenBtn.addEventListener('click', () => {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      }
+    });
+  </script>
+</body>
+</html>
