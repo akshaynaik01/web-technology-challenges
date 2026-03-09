@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenge 11: Data Attributes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .product {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .product:hover {
+      transform: scale(1.02);
+    }
+    #details {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Challenge 11: Working with Data Attributes</h1>
+  
+  <h2>Task:</h2>
+  <p>Create product cards using custom data attributes to store product information. Click on any product to display its details.</p>
+  
+  <h3>Requirements:</h3>
+  <ul>
+    <li>Use data-* attributes to store product information</li>
+    <li>Include data for: product ID, name, price, category, and stock status</li>
+    <li>Add JavaScript to read and display the data attributes when clicked</li>
+    <li>Create at least 5 different product cards</li>
+  </ul>
+  
+  <div class="card product" data-product-id="001" data-name="Laptop" data-price="999" data-category="Electronics" data-stock="available">
+    <h3>Laptop</h3>
+    <p>Price: $999</p>
+  </div>
+  
+  <div class="card product" data-product-id="002" data-name="Headphones" data-price="199" data-category="Electronics" data-stock="available">
+    <h3>Headphones</h3>
+    <p>Price: $199</p>
+  </div>
+  
+  <div class="card product" data-product-id="003" data-name="Desk Chair" data-price="299" data-category="Furniture" data-stock="limited">
+    <h3>Desk Chair</h3>
+    <p>Price: $299</p>
+  </div>
+  
+  <div class="card product" data-product-id="004" data-name="Monitor" data-price="449" data-category="Electronics" data-stock="available">
+    <h3>Monitor</h3>
+    <p>Price: $449</p>
+  </div>
+  
+  <div class="card product" data-product-id="005" data-name="Keyboard" data-price="89" data-category="Electronics" data-stock="out-of-stock">
+    <h3>Keyboard</h3>
+    <p>Price: $89</p>
+  </div>
+  
+  <div id="details">
+    <h3>Product Details:</h3>
+    <p id="product-info">Click on a product to see its details</p>
+  </div>
+  
+  <script>
+    const products = document.querySelectorAll('.product');
+    const productInfo = document.getElementById('product-info');
+    
+    products.forEach(product => {
+      product.addEventListener('click', function() {
+        const id = this.dataset.productId;
+        const name = this.dataset.name;
+        const price = this.dataset.price;
+        const category = this.dataset.category;
+        const stock = this.dataset.stock;
+        
+        productInfo.innerHTML = `
+          <strong>Product ID:</strong> ${id}<br>
+          <strong>Name:</strong> ${name}<br>
+          <strong>Price:</strong> $${price}<br>
+          <strong>Category:</strong> ${category}<br>
+          <strong>Stock Status:</strong> ${stock}
+        `;
+      });
+    });
+  </script>
+</body>
+</html>
