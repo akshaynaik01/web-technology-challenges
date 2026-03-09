@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenge 15: Image Gallery</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #1a1a2e;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+    }
+    .lightbox.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+    }
+    ul {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px 40px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Challenge 15: Responsive Image Gallery</h1>
+    
+    <h2>Task:</h2>
+    <p>Create a responsive image gallery with lightbox functionality and hover effects.</p>
+    
+    <h3>Requirements:</h3>
+    <ul>
+      <li>Use CSS Grid for responsive layout</li>
+      <li>Add hover effects to gallery items</li>
+      <li>Implement lightbox to view images in full size</li>
+      <li>Add close button for lightbox</li>
+      <li>Make it fully responsive for mobile devices</li>
+    </ul>
+    
+    <div class="gallery">
+      <div class="gallery-item" data-img="https://picsum.photos/500/500?random=1">
+        <img src="https://picsum.photos/500/500?random=1" alt="Gallery Image 1">
+        <div class="overlay">Click to enlarge</div>
+      </div>
+      <div class="gallery-item" data-img="https://picsum.photos/500/500?random=2">
+        <img src="https://picsum.photos/500/500?random=2" alt="Gallery Image 2">
+        <div class="overlay">Click to enlarge</div>
+      </div>
+      <div class="gallery-item" data-img="https://picsum.photos/500/500?random=3">
+        <img src="https://picsum.photos/500/500?random=3" alt="Gallery Image 3">
+        <div class="overlay">Click to enlarge</div>
+      </div>
+      <div class="gallery-item" data-img="https://picsum.photos/500/500?random=4">
+        <img src="https://picsum.photos/500/500?random=4" alt="Gallery Image 4">
+        <div class="overlay">Click to enlarge</div>
+      </div>
+      <div class="gallery-item" data-img="https://picsum.photos/500/500?random=5">
+        <img src="https://picsum.photos/500/500?random=5" alt="Gallery Image 5">
+        <div class="overlay">Click to enlarge</div>
+      </div>
+      <div class="gallery-item" data-img="https://picsum.photos/500/500?random=6">
+        <img src="https://picsum.photos/500/500?random=6" alt="Gallery Image 6">
+        <div class="overlay">Click to enlarge</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="lightbox" id="lightbox">
+    <span class="close" id="closeLightbox">&times;</span>
+    <img src="" alt="Lightbox Image" id="lightboxImg">
+  </div>
+  
+  <script>
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('closeLightbox');
+    
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const imgSrc = this.getAttribute('data-img');
+        lightboxImg.src = imgSrc;
+        lightbox.classList.add('active');
+      });
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
