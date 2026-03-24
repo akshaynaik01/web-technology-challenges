@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        .storage-section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button.danger {
+            background-color: #f44336;
+        }
+        button.danger:hover {
+            background-color: #da190b;
+        }
+        .storage-list {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .item {
+            background-color: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .item button {
+            padding: 5px 10px;
+            font-size: 12px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Storage Challenge</h1>
+    <p>Learn about localStorage and sessionStorage in HTML5</p>
+    
+    <div class="storage-section">
+        <h2>Local Storage</h2>
+        <p>Data persists even after browser is closed</p>
+        <input type="text" id="localKey" placeholder="Enter key">
+        <input type="text" id="localValue" placeholder="Enter value">
+        <button onclick="saveToLocal()">Save to Local Storage</button>
+        <button onclick="clearLocal()" class="danger">Clear Local Storage</button>
+        <div class="storage-list" id="localList">
+            <p>Local storage items will appear here</p>
+        </div>
+    </div>
+    
+    <div class="storage-section">
+        <h2>Session Storage</h2>
+        <p>Data is cleared when the tab is closed</p>
+        <input type="text" id="sessionKey" placeholder="Enter key">
+        <input type="text" id="sessionValue" placeholder="Enter value">
+        <button onclick="saveToSession()">Save to Session Storage</button>
+        <button onclick="clearSession()" class="danger">Clear Session Storage</button>
+        <div class="storage-list" id="sessionList">
+            <p>Session storage items will appear here</p>
+        </div>
+    </div>
+    
+    <script>
+        function saveToLocal() {
+            const key = document.getElementById('localKey').value;
+            const value = document.getElementById('localValue').value;
+            
+            if (key && value) {
+                localStorage.setItem(key, value);
+                document.getElementById('localKey').value = '';
+                document.getElementById('localValue').value = '';
+                displayLocal();
+            } else {
+                alert('Please enter both key and value');
+            }
+        }
+        
+        function displayLocal() {
+            const list = document.getElementById('localList');
+            list.innerHTML = '';
+            
+            if (localStorage.length === 0) {
+                list.innerHTML = '<p>No items in local storage</p>';
+                return;
+            }
+            
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                const item = document.createElement('div');
+                item.className = 'item';
+                item.innerHTML = `
+                    <span><strong>${key}:</strong> ${value}</span>
+                    <button onclick="localStorage.removeItem('${key}'); displayLocal();" class="danger">Remove</button>
+                `;
+                list.appendChild(item);
+            }
+        }
+        
+        function clearLocal() {
+            localStorage.clear();
+            displayLocal();
+            alert('Local storage cleared');
+        }
+        
+        function saveToSession() {
+            const key = document.getElementById('sessionKey').value;
+            const value = document.getElementById('sessionValue').value;
+            
+            if (key && value) {
+                sessionStorage.setItem(key, value);
+                document.getElementById('sessionKey').value = '';
+                document.getElementById('sessionValue').value = '';
+                displaySession();
+            } else {
+                alert('Please enter both key and value');
+            }
+        }
+        
+        function displaySession() {
+            const list = document.getElementById('sessionList');
+            list.innerHTML = '';
+            
+            if (sessionStorage.length === 0) {
+                list.innerHTML = '<p>No items in session storage</p>';
+                return;
+            }
+            
+            for (let i = 0; i < sessionStorage.length; i++) {
+                const key = sessionStorage.key(i);
+                const value = sessionStorage.getItem(key);
+                const item = document.createElement('div');
+                item.className = 'item';
+                item.innerHTML = `
+                    <span><strong>${key}:</strong> ${value}</span>
+                    <button onclick="sessionStorage.removeItem('${key}'); displaySession();" class="danger">Remove</button>
+                `;
+                list.appendChild(item);
+            }
+        }
+        
+        function clearSession() {
+            sessionStorage.clear();
+            displaySession();
+            alert('Session storage cleared');
+        }
+        
+        // Display on page load
+        window.addEventListener('load', function() {
+            displayLocal();
+            displaySession();
+        });
+    </script>
+</body>
+</html>
