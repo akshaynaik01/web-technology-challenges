@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Graphics Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        canvas {
+            border: 2px solid #333;
+            background-color: white;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Canvas Graphics Challenge</h1>
+    <p>Create interactive graphics using HTML5 Canvas API</p>
+    
+    <h2>Challenge 1: Basic Shapes</h2>
+    <canvas id="canvas1" width="400" height="300"></canvas>
+    
+    <h2>Challenge 2: Drawing Patterns</h2>
+    <canvas id="canvas2" width="400" height="300"></canvas>
+    
+    <script>
+        // Canvas 1 - Basic Shapes
+        const canvas1 = document.getElementById('canvas1');
+        const ctx1 = canvas1.getContext('2d');
+        
+        // Draw rectangle
+        ctx1.fillStyle = '#4CAF50';
+        ctx1.fillRect(20, 20, 150, 100);
+        
+        // Draw circle
+        ctx1.fillStyle = '#2196F3';
+        ctx1.beginPath();
+        ctx1.arc(250, 70, 50, 0, Math.PI * 2);
+        ctx1.fill();
+        
+        // Draw triangle
+        ctx1.fillStyle = '#FF9800';
+        ctx1.beginPath();
+        ctx1.moveTo(100, 200);
+        ctx1.lineTo(200, 200);
+        ctx1.lineTo(150, 100);
+        ctx1.closePath();
+        ctx1.fill();
+        
+        // Canvas 2 - Patterns
+        const canvas2 = document.getElementById('canvas2');
+        const ctx2 = canvas2.getContext('2d');
+        
+        // Create pattern
+        ctx2.fillStyle = '#E91E63';
+        for(let i = 0; i < 10; i++) {
+            for(let j = 0; j < 10; j++) {
+                ctx2.fillRect(i * 40, j * 30, 35, 25);
+            }
+        }
+    </script>
+</body>
+</html>
