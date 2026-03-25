@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Components Challenge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .challenge-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .challenge-card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .challenge-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .example {
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .button-group {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .output {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            min-height: 60px;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .difficulty.intermediate {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .difficulty.advanced {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        custom-card {
+            display: block;
+        }
+
+        .feature-list {
+            list-style-position: inside;
+            color: #666;
+            margin-left: 15px;
+        }
+
+        .feature-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Web Components Challenge</h1>
+
+        <!-- Challenge 1: Basic Custom Element -->
+        <div class="challenge-card">
+            <span class="difficulty intermediate">Intermediate</span>
+            <h2>1. Create a Custom Card Component</h2>
+            <p>
+                Create a custom HTML element called <code>&lt;custom-card&gt;</code> that displays a reusable card component.
+            </p>
+            <h3>Requirements:</h3>
+            <ul class="feature-list">
+                <li>Create a Web Component class that extends HTMLElement</li>
+                <li>Use Shadow DOM to encapsulate styles</li>
+                <li>Accept attributes for title, description, and image URL</li>
+                <li>Implement proper styling within the Shadow DOM</li>
+                <li>Add event listeners for card interactions</li>
+            </ul>
+            <div class="example">
+&lt;custom-card 
+  title="Web Development"
+  description="Learn modern web technologies"
+  image="https://example.com/image.jpg"&gt;
+&lt;/custom-card&gt;
+            </div>
+            <div class="button-group">
+                <button onclick="showChallenge1Info()">View Challenge</button>
+                <button onclick="testChallenge1()">Test Solution</button>
+            </div>
+            <div class="output" id="output1"></div>
+        </div>
+
+        <!-- Challenge 2: Data Binding Component -->
+        <div class="challenge-card">
+            <span class="difficulty advanced">Advanced</span>
+            <h2>2. Create a Data Binding Component</h2>
+            <p>
+                Create a Web Component that implements two-way data binding between form inputs and component state.
+            </p>
+            <h3>Requirements:</h3>
+            <ul class="feature-list">
+                <li>Create a Web Component for form binding</li>
+                <li>Implement reactive property changes</li>
+                <li>Use custom events for data updates</li>
+                <li>Validate input data</li>
+                <li>Support multiple input fields</li>
+            </ul>
+            <div class="example">
+&lt;data-binding-form id="myForm"&gt;
+  &lt;input name="email" type="email" /&gt;
+  &lt;input name="username" type="text" /&gt;
+&lt;/data-binding-form&gt;
+            </div>
+            <div class="button-group">
+                <button onclick="showChallenge2Info()">View Challenge</button>
+                <button onclick="testChallenge2()">Test Solution</button>
+            </div>
+            <div class="output" id="output2"></div>
+        </div>
+
+        <!-- Challenge 3: Slot-based Layout Component -->
+        <div class="challenge-card">
+            <span class="difficulty intermediate">Intermediate</span>
+            <h2>3. Create a Slot-based Layout Component</h2>
+            <p>
+                Create a Web Component that uses slots to create a flexible layout structure.
+            </p>
+            <h3>Requirements:</h3>
+            <ul class="feature-list">
+                <li>Create a layout Web Component using named slots</li>
+                <li>Support header, main content, and sidebar slots</li>
+                <li>Make the layout responsive</li>
+                <li>Apply consistent styling</li>
+                <li>Allow slot manipulation from parent</li>
+            </ul>
+            <div class="example">
+&lt;layout-component&gt;
+  &lt;div slot="header"&gt;Header Content&lt;/div&gt;
+  &lt;div slot="main"&gt;Main Content&lt;/div&gt;
+  &lt;div slot="sidebar"&gt;Sidebar&lt;/div&gt;
+&lt;/layout-component&gt;
+            </div>
+            <div class="button-group">
+                <button onclick="showChallenge3Info()">View Challenge</button>
+                <button onclick="testChallenge3()">Test Solution</button>
+            </div>
+            <div class="output" id="output3"></div>
+        </div>
+
+        <!-- Challenge 4: Custom Form Component -->
+        <div class="challenge-card">
+            <span class="difficulty advanced">Advanced</span>
+            <h2>4. Build a Custom Form Component</h2>
+            <p>
+                Create a complete custom form component with validation, submission, and custom validation rules.
+            </p>
+            <h3>Requirements:</h3>
+            <ul class="feature-list">
+                <li>Create a Web Component for form handling</li>
+                <li>Implement built-in and custom validation</li>
+                <li>Support form submission with data serialization</li>
+                <li>Add error message display</li>
+                <li>Implement reset functionality</li>
+                <li>Support async validation</li>
+            </ul>
+            <div class="example">
+&lt;custom-form id="registrationForm"&gt;
+  &lt;input type="text" name="username" required /&gt;
+  &lt;input type="email" name="email" required /&gt;
+  &lt;input type="password" name="password" required /&gt;
+  &lt;button type="submit"&gt;Register&lt;/button&gt;
+&lt;/custom-form&gt;
+            </div>
+            <div class="button-group">
+                <button onclick="showChallenge4Info()">View Challenge</button>
+                <button onclick="testChallenge4()">Test Solution</button>
+            </div>
+            <div class="output" id="output4"></div>
+        </div>
+
+        <!-- Challenge 5: Lifecycle Hooks Component -->
+        <div class="challenge-card">
+            <span class="difficulty advanced">Advanced</span>
+            <h2>5. Implement Lifecycle Hooks</h2>
+            <p>
+                Create a Web Component that demonstrates proper lifecycle management and state handling.
+            </p>
+            <h3>Requirements:</h3>
+            <ul class="feature-list">
+                <li>Implement all lifecycle hooks (constructor, connectedCallback, disconnectedCallback, adoptedCallback)</li>
+                <li>Handle property changes with propertyChangedCallback</li>
+                <li>Manage internal state properly</li>
+                <li>Clean up resources in disconnectedCallback</li>
+                <li>Support attribute observation</li>
+                <li>Demonstrate proper memory management</li>
+            </ul>
+            <div class="example">
+lifecycleComponent.observedAttributes = ['data-count', 'data-name'];
+componentElement.setAttribute('data-count', '10');
+            </div>
+            <div class="button-group">
+                <button onclick="showChallenge5Info()">View Challenge</button>
+                <button onclick="testChallenge5()">Test Solution</button>
+            </div>
+            <div class="output" id="output5"></div>
+        </div>
+    </div>
+
+    <script>
+        // Challenge Information and Testing Functions
+        function showChallenge1Info() {
+            const output = document.getElementById('output1');
+            output.innerHTML = '<strong>Challenge 1 Info:</strong> Build a reusable card component with encapsulated styles using Shadow DOM.';
+        }
+
+        function testChallenge1() {
+            const output = document.getElementById('output1');
+            output.innerHTML = '<strong>Test Status:</strong> Create your component and test it by creating instances with different data.';
+        }
+
+        function showChallenge2Info() {
+            const output = document.getElementById('output2');
+            output.innerHTML = '<strong>Challenge 2 Info:</strong> Implement reactive data binding with proper state management and event handling.';
+        }
+
+        function testChallenge2() {
+            const output = document.getElementById('output2');
+            output.innerHTML = '<strong>Test Status:</strong> Create form bindings and verify two-way data synchronization works correctly.';
+        }
+
+        function showChallenge3Info() {
+            const output = document.getElementById('output3');
+            output.innerHTML = '<strong>Challenge 3 Info:</strong> Use named slots to create flexible, composable layouts.';
+        }
+
+        function testChallenge3() {
+            const output = document.getElementById('output3');
+            output.innerHTML = '<strong>Test Status:</strong> Create layout instances with different slot content and verify proper rendering.';
+        }
+
+        function showChallenge4Info() {
+            const output = document.getElementById('output4');
+            output.innerHTML = '<strong>Challenge 4 Info:</strong> Build a comprehensive form component with validation and submission handling.';
+        }
+
+        function testChallenge4() {
+            const output = document.getElementById('output4');
+            output.innerHTML = '<strong>Test Status:</strong> Test form submission, validation rules, and error handling scenarios.';
+        }
+
+        function showChallenge5Info() {
+            const output = document.getElementById('output5');
+            output.innerHTML = '<strong>Challenge 5 Info:</strong> Master component lifecycle and implement proper state management patterns.';
+        }
+
+        function testChallenge5() {
+            const output = document.getElementById('output5');
+            output.innerHTML = '<strong>Test Status:</strong> Verify all lifecycle hooks are called in correct sequence and resources are properly cleaned up.';
+        }
+    </script>
+</body>
+</html>
