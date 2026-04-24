@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz App</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #f4f4f4;
+}
+
+.container {
+    width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🧠 Quiz App</h2>
+
+    <p id="question"></p>
+
+    <div id="options"></div>
+
+    <button onclick="nextQuestion()">Next</button>
+
+    <h3 id="score"></h3>
+</div>
+
+<script>
+const quiz = [
+    {
+        q: "What is HTML?",
+        options: ["Programming Language", "Markup Language", "Database", "OS"],
+        answer: 1
+    },
+    {
+        q: "Which tag is used for paragraph?",
+        options: ["<p>", "<h1>", "<div>", "<span>"],
+        answer: 0
+    },
+    {
+        q: "JavaScript is used for?",
+        options: ["Styling", "Structure", "Interactivity", "Database"],
+        answer: 2
+    }
+];
+
+let current = 0;
+let score = 0;
+let selected = null;
+
+function loadQuestion() {
+    let q = quiz[current];
+    document.getElementById("question").innerText = q.q;
+
+    let optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+
+    q.options.forEach((opt, index) => {
+        let btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.className = "option";
+        btn.onclick = () => selectAnswer(index);
+        optionsDiv.appendChild(btn);
+    });
+}
+
+function selectAnswer(index) {
+    selected = index;
+}
+
+function nextQuestion() {
+    if (selected === null) {
+        alert("Select an answer");
+        return;
+    }
+
+    if (selected === quiz[current].answer) {
+        score++;
+    }
+
+    current++;
+    selected = null;
+
+    if (current < quiz.length) {
+        loadQuestion();
+    } else {
+        document.querySelector(".container").innerHTML =
+            `<h2>Quiz Finished 🎉</h2>
+             <h3>Your Score: ${score}/${quiz.length}</h3>`;
+    }
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
