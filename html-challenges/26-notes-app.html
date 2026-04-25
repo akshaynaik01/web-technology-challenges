@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes App</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.container {
+    width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+textarea {
+    width: 90%;
+    height: 80px;
+    margin: 10px;
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.note {
+    background: #ddd;
+    margin: 10px;
+    padding: 10px;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.actions {
+    margin-top: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>📝 Notes App</h2>
+
+    <textarea id="noteInput" placeholder="Write your note..."></textarea><br>
+    <button onclick="addNote()">Add Note</button>
+
+    <div id="notes"></div>
+</div>
+
+<script>
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
+let editIndex = null;
+
+function renderNotes() {
+    let notesDiv = document.getElementById("notes");
+    notesDiv.innerHTML = "";
+
+    notes.forEach((note, index) => {
+        let div = document.createElement("div");
+        div.className = "note";
+
+        div.innerHTML = `
+            <p>${note}</p>
+            <div class="actions">
+                <button onclick="editNote(${index})">Edit</button>
+                <button onclick="deleteNote(${index})">Delete</button>
+            </div>
+        `;
+
+        notesDiv.appendChild(div);
+    });
+
+    localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+function addNote() {
+    let input = document.getElementById("noteInput");
+
+    if (input.value === "") {
+        alert("Write something");
+        return;
+    }
+
+    if (editIndex !== null) {
+        notes[editIndex] = input.value;
+        editIndex = null;
+    } else {
+        notes.push(input.value);
+    }
+
+    input.value = "";
+    renderNotes();
+}
+
+function editNote(index) {
+    document.getElementById("noteInput").value = notes[index];
+    editIndex = index;
+}
+
+function deleteNote(index) {
+    notes.splice(index, 1);
+    renderNotes();
+}
+
+renderNotes();
+</script>
+
+</body>
+</html>
