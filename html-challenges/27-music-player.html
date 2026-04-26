@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Player</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: #222;
+    color: white;
+}
+
+.container {
+    margin-top: 60px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.progress {
+    width: 300px;
+    height: 5px;
+    background: #555;
+    margin: 10px auto;
+    position: relative;
+}
+
+.progress-bar {
+    height: 5px;
+    background: #00ffcc;
+    width: 0%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🎵 Music Player</h2>
+
+    <p id="songName">Song 1</p>
+
+    <audio id="audio"></audio>
+
+    <div class="progress">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <div>
+        <button onclick="prevSong()">⏮ Prev</button>
+        <button onclick="playPause()">▶ / ⏸</button>
+        <button onclick="nextSong()">⏭ Next</button>
+    </div>
+</div>
+
+<script>
+const songs = [
+    { name: "Song 1", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+    { name: "Song 2", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+    { name: "Song 3", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
+];
+
+let index = 0;
+let audio = document.getElementById("audio");
+
+function loadSong() {
+    audio.src = songs[index].src;
+    document.getElementById("songName").innerText = songs[index].name;
+}
+
+function playPause() {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
+
+function nextSong() {
+    index = (index + 1) % songs.length;
+    loadSong();
+    audio.play();
+}
+
+function prevSong() {
+    index = (index - 1 + songs.length) % songs.length;
+    loadSong();
+    audio.play();
+}
+
+audio.addEventListener("timeupdate", () => {
+    let progress = (audio.currentTime / audio.duration) * 100;
+    document.getElementById("progressBar").style.width = progress + "%";
+});
+
+loadSong();
+</script>
+
+</body>
+</html>
