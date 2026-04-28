@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login System</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.container {
+    width: 300px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    margin-top: 60px;
+    border-radius: 10px;
+}
+
+input {
+    width: 90%;
+    padding: 8px;
+    margin: 8px;
+}
+
+button {
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.toggle {
+    color: blue;
+    cursor: pointer;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2 id="title">Login</h2>
+
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+
+    <button onclick="submitForm()">Login</button>
+
+    <p class="toggle" onclick="toggleForm()">Don't have an account? Register</p>
+</div>
+
+<script>
+let isLogin = true;
+
+function toggleForm() {
+    isLogin = !isLogin;
+
+    document.getElementById("title").innerText = isLogin ? "Login" : "Register";
+    document.querySelector("button").innerText = isLogin ? "Login" : "Register";
+    document.querySelector(".toggle").innerText = isLogin 
+        ? "Don't have an account? Register" 
+        : "Already have an account? Login";
+}
+
+function submitForm() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if (username === "" || password === "") {
+        alert("Fill all fields");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || {};
+
+    if (isLogin) {
+        if (users[username] && users[username] === password) {
+            alert("Login successful 🎉");
+        } else {
+            alert("Invalid credentials");
+        }
+    } else {
+        if (users[username]) {
+            alert("User already exists");
+        } else {
+            users[username] = password;
+            localStorage.setItem("users", JSON.stringify(users));
+            alert("Registered successfully ✅");
+            toggleForm();
+        }
+    }
+}
+</script>
+
+</body>
+</html>
