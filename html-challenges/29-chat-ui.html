@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat UI</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #ece5dd;
+    margin: 0;
+}
+
+.chat-container {
+    width: 350px;
+    margin: auto;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+/* Header */
+.header {
+    background: #075e54;
+    color: white;
+    padding: 15px;
+}
+
+/* Messages */
+.messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.sent {
+    background: #dcf8c6;
+    margin-left: auto;
+}
+
+.received {
+    background: #fff;
+}
+
+/* Input */
+.input-area {
+    display: flex;
+    padding: 10px;
+    background: #eee;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+button {
+    padding: 10px;
+    background: #075e54;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <div class="header">
+        Chat App
+    </div>
+
+    <div id="messages" class="messages"></div>
+
+    <div class="input-area">
+        <input type="text" id="msgInput" placeholder="Type a message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+</div>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("msgInput");
+    let text = input.value;
+
+    if (text === "") return;
+
+    addMessage(text, "sent");
+
+    // Fake reply
+    setTimeout(() => {
+        addMessage("Reply: " + text, "received");
+    }, 1000);
+
+    input.value = "";
+}
+
+function addMessage(text, type) {
+    let msgDiv = document.getElementById("messages");
+
+    let msg = document.createElement("div");
+    msg.classList.add("message", type);
+    msg.innerText = text;
+
+    msgDiv.appendChild(msg);
+
+    msgDiv.scrollTop = msgDiv.scrollHeight;
+}
+</script>
+
+</body>
+</html>
