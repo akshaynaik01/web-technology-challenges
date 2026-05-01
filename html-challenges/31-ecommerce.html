@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Commerce Mini</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+.header {
+    background: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+/* Products */
+.products {
+    flex: 2;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.product {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 150px;
+    text-align: center;
+}
+
+/* Cart */
+.cart {
+    flex: 1;
+    background: white;
+    padding: 20px;
+}
+
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+    margin: 5px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    🛒 Mini E-Commerce
+</div>
+
+<div class="container">
+
+    <div id="products" class="products"></div>
+
+    <div class="cart">
+        <h3>Cart</h3>
+        <ul id="cartList"></ul>
+        <h4>Total: ₹ <span id="total">0</span></h4>
+    </div>
+
+</div>
+
+<script>
+const items = [
+    { name: "Shirt", price: 500 },
+    { name: "Shoes", price: 1200 },
+    { name: "Watch", price: 800 }
+];
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function loadProducts() {
+    let pDiv = document.getElementById("products");
+
+    items.forEach((item, index) => {
+        let div = document.createElement("div");
+        div.className = "product";
+
+        div.innerHTML = `
+            <h4>${item.name}</h4>
+            <p>₹${item.price}</p>
+            <button onclick="addToCart(${index})">Add</button>
+        `;
+
+        pDiv.appendChild(div);
+    });
+}
+
+function addToCart(index) {
+    cart.push(items[index]);
+    updateCart();
+}
+
+function updateCart() {
+    let list = document.getElementById("cartList");
+    list.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach((item, i) => {
+        total += item.price;
+
+        let li = document.createElement("li");
+        li.innerHTML = `
+            ${item.name} - ₹${item.price}
+            <button onclick="removeItem(${i})">X</button>
+        `;
+
+        list.appendChild(li);
+    });
+
+    document.getElementById("total").innerText = total;
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function removeItem(i) {
+    cart.splice(i, 1);
+    updateCart();
+}
+
+loadProducts();
+updateCart();
+</script>
+
+</body>
+</html>
