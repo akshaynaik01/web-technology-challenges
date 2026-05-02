@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akshay Portfolio</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
+nav {
+    background: #222;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
+
+/* Sections */
+section {
+    padding: 80px 20px;
+    min-height: 100vh;
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+    text-align: center;
+}
+
+/* Projects */
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card {
+    background: #f4f4f4;
+    padding: 15px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+/* Contact */
+.contact input, .contact textarea {
+    width: 80%;
+    padding: 10px;
+    margin: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="home" class="hero">
+    <h1>Hi, I'm Akshay 👋</h1>
+    <p>Frontend Developer | Engineering Student</p>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>I build web applications using HTML, CSS, and JavaScript.</p>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+
+    <div class="projects">
+        <div class="card">To-Do App</div>
+        <div class="card">Weather App</div>
+        <div class="card">Expense Tracker</div>
+        <div class="card">Quiz App</div>
+        <div class="card">Chat UI</div>
+        <div class="card">Dashboard</div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2>Contact Me</h2>
+
+    <input type="text" placeholder="Your Name"><br>
+    <input type="email" placeholder="Email"><br>
+    <textarea placeholder="Message"></textarea><br>
+    <button>Send</button>
+</section>
+
+</body>
+</html>
