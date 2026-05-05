@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanban Board</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+.header {
+    text-align: center;
+    padding: 15px;
+    background: #333;
+    color: white;
+}
+
+.board {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+}
+
+.column {
+    flex: 1;
+    background: #ddd;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.column h3 {
+    text-align: center;
+}
+
+.task {
+    background: white;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: grab;
+}
+
+.add {
+    margin-top: 10px;
+    display: flex;
+}
+
+.add input {
+    flex: 1;
+    padding: 5px;
+}
+
+.add button {
+    padding: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">📋 Kanban Board</div>
+
+<div class="board">
+
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h3>To Do</h3>
+        <div id="todo"></div>
+        <div class="add">
+            <input type="text" id="todoInput" placeholder="New task">
+            <button onclick="addTask('todo')">+</button>
+        </div>
+    </div>
+
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h3>In Progress</h3>
+        <div id="progress"></div>
+    </div>
+
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h3>Done</h3>
+        <div id="done"></div>
+    </div>
+
+</div>
+
+<script>
+let taskId = 0;
+
+function addTask(column) {
+    let input = document.getElementById(column + "Input");
+    let text = input.value;
+
+    if (text === "") return;
+
+    let task = document.createElement("div");
+    task.className = "task";
+    task.draggable = true;
+    task.id = "task" + taskId++;
+    task.innerText = text;
+
+    task.ondragstart = drag;
+
+    document.getElementById(column).appendChild(task);
+    input.value = "";
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    let id = ev.dataTransfer.getData("text");
+    ev.target.closest(".column").querySelector("div").appendChild(document.getElementById(id));
+}
+</script>
+
+</body>
+</html>
