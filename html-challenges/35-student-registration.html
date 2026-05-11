@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+</head>
+
+<body>
+
+    <h1>Student Registration Form</h1>
+
+    <hr>
+
+    <form>
+
+        <!-- Name -->
+        <label>Full Name:</label><br>
+        <input type="text" placeholder="Enter your name"><br><br>
+
+        <!-- Email -->
+        <label>Email:</label><br>
+        <input type="email" placeholder="Enter email"><br><br>
+
+        <!-- Password -->
+        <label>Password:</label><br>
+        <input type="password" placeholder="Enter password"><br><br>
+
+        <!-- Gender -->
+        <label>Gender:</label><br>
+
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female
+        <input type="radio" name="gender"> Other
+
+        <br><br>
+
+        <!-- Course -->
+        <label>Select Course:</label><br>
+
+        <select>
+            <option>CSE</option>
+            <option>ECE</option>
+            <option>ME</option>
+            <option>Civil</option>
+        </select>
+
+        <br><br>
+
+        <!-- Skills -->
+        <label>Skills:</label><br>
+
+        <input type="checkbox"> HTML
+        <input type="checkbox"> CSS
+        <input type="checkbox"> JavaScript
+        <input type="checkbox"> Python
+
+        <br><br>
+
+        <!-- Address -->
+        <label>Address:</label><br>
+
+        <textarea rows="4" cols="30"></textarea>
+
+        <br><br>
+
+        <!-- Date -->
+        <label>Date of Birth:</label><br>
+
+        <input type="date">
+
+        <br><br>
+
+        <!-- Upload -->
+        <label>Upload Photo:</label><br>
+
+        <input type="file">
+
+        <br><br>
+
+        <!-- Buttons -->
+        <input type="submit" value="Register">
+        <input type="reset" value="Clear">
+
+    </form>
+
+    <hr>
+
+    <h2>Registered Students</h2>
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Email</th>
+        </tr>
+
+        <tr>
+            <td>Akshay</td>
+            <td>CSE</td>
+            <td>akshay@email.com</td>
+        </tr>
+
+        <tr>
+            <td>Rahul</td>
+            <td>ECE</td>
+            <td>rahul@email.com</td>
+        </tr>
+
+    </table>
+
+</body>
+
+</html>
