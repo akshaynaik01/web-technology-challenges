@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Challenge 09 - CSS Image Hover Gallery</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+    background:linear-gradient(135deg,#141e30,#243b55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:50px;
+}
+
+.container{
+
+    max-width:1200px;
+    width:100%;
+}
+
+h1{
+
+    color:white;
+    text-align:center;
+    margin-bottom:40px;
+    font-size:40px;
+}
+
+.gallery{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    cursor:pointer;
+    box-shadow:0 15px 35px rgba(0,0,0,.4);
+}
+
+.card img{
+
+    width:100%;
+    height:350px;
+    object-fit:cover;
+    display:block;
+    transition:.6s;
+}
+
+.overlay{
+
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    opacity:0;
+    transition:.5s;
+}
+
+.overlay h2{
+
+    color:white;
+    font-size:28px;
+    margin-bottom:10px;
+    transform:translateY(30px);
+    transition:.5s;
+}
+
+.overlay p{
+
+    color:#ddd;
+    text-align:center;
+    padding:0 20px;
+    transform:translateY(30px);
+    transition:.6s;
+}
+
+.card:hover img{
+
+    transform:scale(1.15) rotate(3deg);
+    filter:brightness(.5);
+}
+
+.card:hover .overlay{
+
+    opacity:1;
+}
+
+.card:hover h2,
+.card:hover p{
+
+    transform:translateY(0);
+}
+
+.button{
+
+    margin-top:20px;
+    padding:12px 25px;
+    background:#00c6ff;
+    color:white;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.button:hover{
+
+    background:#0072ff;
+    transform:translateY(-3px);
+}
+
+@media(max-width:768px){
+
+h1{
+
+    font-size:30px;
+}
+
+.card img{
+
+    height:260px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>CSS Image Hover Gallery</h1>
+
+<div class="gallery">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800" alt="Mountain">
+
+<div class="overlay">
+
+<h2>Mountains</h2>
+
+<p>Beautiful mountain landscape with modern hover animation.</p>
+
+<a href="#" class="button">Explore</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" alt="Beach">
+
+<div class="overlay">
+
+<h2>Beach</h2>
+
+<p>Relax and enjoy the peaceful ocean view.</p>
+
+<a href="#" class="button">Explore</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800" alt="Forest">
+
+<div class="overlay">
+
+<h2>Forest</h2>
+
+<p>Nature at its best with amazing green scenery.</p>
+
+<a href="#" class="button">Explore</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=800" alt="City">
+
+<div class="overlay">
+
+<h2>City Lights</h2>
+
+<p>Modern city skyline during the beautiful night.</p>
+
+<a href="#" class="button">Explore</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800" alt="Waterfall">
+
+<div class="overlay">
+
+<h2>Waterfall</h2>
+
+<p>Experience the refreshing beauty of waterfalls.</p>
+
+<a href="#" class="button">Explore</a>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800" alt="Desert">
+
+<div class="overlay">
+
+<h2>Desert</h2>
+
+<p>Golden sand dunes with stunning sunset views.</p>
+
+<a href="#" class="button">Explore</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
